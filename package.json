@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
-    "homepage": "https://github.com/Hrithik-14/Task"
+    "homepage": "https://hrithik-14.github.io/Task/"
   },
   "dependencies": {
     "react": "^19.0.0",
