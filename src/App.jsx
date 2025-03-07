@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
-const Registration = () => {
-  const navigate = useNavigate();
+const Registration = ({ navigate }) => {
   const handleRegister = (e) => {
     e.preventDefault();
     navigate("/login");
   };
+
   return (
     <div>
       <h2>Registration Page</h2>
@@ -19,12 +19,12 @@ const Registration = () => {
   );
 };
 
-const Login = () => {
-  const navigate = useNavigate();
+const Login = ({ navigate }) => {
   const handleLogin = (e) => {
     e.preventDefault();
     navigate("/");
   };
+
   return (
     <div>
       <h2>Login Page</h2>
@@ -46,12 +46,17 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<NavigateWrapper Component={Registration} />} />
+        <Route path="/login" element={<NavigateWrapper Component={Login} />} />
       </Routes>
     </Router>
   );
 };
 
-export default App;
+// Wrapper Component to Pass `useNavigate`
+const NavigateWrapper = ({ Component }) => {
+  const navigate = useNavigate();
+  return <Component navigate={navigate} />;
+};
 
+export default App;
